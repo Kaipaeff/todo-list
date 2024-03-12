@@ -6,7 +6,7 @@ export const NavbarStyled = styled.nav`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 12px 32px;
+  padding: 0 32px;
   margin-bottom: 24px;
   border: 1px solid ${borderColor};
   border-radius: 12px;
