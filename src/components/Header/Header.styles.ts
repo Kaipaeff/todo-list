@@ -11,7 +11,7 @@ export const HeaderStyles = styled.header`
   justify-content: center;
   width: 100%;
   background-color: ${white};
-  box-shadow: 0 4px 12px 3px rgba(2, 9, 51, 0.15);
+  box-shadow: 0 4px 12px 3px rgba(2, 9, 51, 0.07);
   /* z-index: 2; */
 `;
 

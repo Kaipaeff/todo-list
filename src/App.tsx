@@ -1,5 +1,7 @@
+// import Divider from '@mui/material-next/Divider';
+
 import Header from './components/Header/Header';
-import { ContainerStyles } from './styles/ContainerStyles';
+import Main from './components/Main/Main';
 import { GlobalStyles } from './styles/GlobalStyles';
 
 function App() {
@@ -7,10 +9,7 @@ function App() {
     <>
       <GlobalStyles />
       <Header />
-
-      <ContainerStyles>
-        <h1>Hello, i'm a ContainerStyles</h1>
-      </ContainerStyles>
+      <Main />
     </>
   );
 }
