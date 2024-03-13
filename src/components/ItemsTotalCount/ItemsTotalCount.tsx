@@ -1,12 +1,14 @@
 import { useState } from 'react';
-import { ItemsTotalCountStyles } from './ItemsTotalCount.styles';
+import { ItemsTotalCountStyles, ItemsCountStyles } from './ItemsTotalCount.styles';
 
 function ItemsTotalCount() {
-  const [items, setItems] = useState(5);
+  const [items, setItems] = useState(20);
   return (
-    <>
-      <ItemsTotalCountStyles>Количество задач: {items}</ItemsTotalCountStyles>
-    </>
+    <ItemsTotalCountStyles>
+      <ItemsCountStyles>Всего: {items}</ItemsCountStyles>
+      <ItemsCountStyles>В процессе: 3</ItemsCountStyles>
+      <ItemsCountStyles>Выполнено: 17</ItemsCountStyles>
+    </ItemsTotalCountStyles>
   );
 }
 
