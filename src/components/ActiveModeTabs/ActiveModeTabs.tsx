@@ -12,7 +12,7 @@ function ActiveModeTabs() {
   };
 
   return (
-    <Box sx={{ width: '350px' }}>
+    <Box sx={{ width: '350px', ml: 'auto' }}>
       <Tabs value={value} onChange={handleChange} centered textColor="primary">
         <Tab label="Все" />
         <Tab label="Активные" />
