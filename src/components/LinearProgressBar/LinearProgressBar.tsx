@@ -23,7 +23,7 @@ function LinearProgressBar() {
   }
 
   return (
-    <Box sx={{ width: '30%' }}>
+    <Box sx={{ width: '30%', margin: '0 auto' }}>
       <LinearProgressWithLabel value={progress} color="primary" />
     </Box>
   );

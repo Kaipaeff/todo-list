@@ -1,11 +1,11 @@
-import ItemsTotalCount from '../ItemsTotalCount/ItemsTotalCount';
+import Filters from '../Filters/Filters';
 import ListItem from '../ListItem/ListItem';
 import { TodoListItemsStyles, TodoListStyles } from './TodoList.styles';
 
 function TodoList() {
   return (
     <TodoListStyles>
-      <ItemsTotalCount />
+      <Filters />
       <TodoListItemsStyles>
         <ListItem />
         <ListItem />
