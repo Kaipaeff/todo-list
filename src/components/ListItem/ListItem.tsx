@@ -31,15 +31,9 @@ function ListItem() {
         <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <Typography variant="body1" color="text.secondary" mr={'auto'}>
             Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents
-            except
           </Typography>
           <Tooltip title="Done" placement="top">
-            <Checkbox
-              checked={checked}
-              onChange={handleChange}
-              inputProps={{ 'aria-label': 'controlled' }}
-              style={{ marginRight: '24px' }}
-            />
+            <Checkbox checked={checked} onChange={handleChange} style={{ marginRight: '24px' }} />
           </Tooltip>
 
           <Tooltip title="Edit" placement="top">

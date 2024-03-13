@@ -6,7 +6,7 @@ export const TodoListStyles = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: 24px;
+  padding: 12px 24px 24px;
   border: 1px solid ${borderColor};
   border-radius: 12px;
   overflow: auto;
