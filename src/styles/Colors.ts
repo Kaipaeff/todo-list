@@ -5,6 +5,8 @@ export const grey = '#626262';
 export const mediumGrey = '#454545';
 export const deepGrey = '#303030';
 
+export const blue = '#1976D2';
+
 export const green = '#0A4A1B';
 export const neonGreen = '#2ED158';
 export const deepGreen = '#082A11';
