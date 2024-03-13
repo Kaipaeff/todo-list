@@ -4,10 +4,11 @@ import { GlobalStyles } from './styles/GlobalStyles';
 
 function App() {
   return (
-    <GlobalStyles>
+    <>
+      <GlobalStyles />
       <Header />
       <Main />
-    </GlobalStyles>
+    </>
   );
 }
 

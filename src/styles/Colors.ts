@@ -15,4 +15,4 @@ export const neonRed = '#FF453A';
 export const backgroundColor = '#F8FAFC';
 export const borderColor = '#E2E8F0';
 export const inputTextColor = '#CBD5E1';
-export const textColor = '#171731';
+export const textColor = '#706F6F';
