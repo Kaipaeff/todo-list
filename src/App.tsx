@@ -1,16 +1,13 @@
-// import Divider from '@mui/material-next/Divider';
-
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import { GlobalStyles } from './styles/GlobalStyles';
 
 function App() {
   return (
-    <>
-      <GlobalStyles />
+    <GlobalStyles>
       <Header />
       <Main />
-    </>
+    </GlobalStyles>
   );
 }
 
