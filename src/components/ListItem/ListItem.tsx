@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { ListItemStyles } from './ListItem.styles';
+import { ITodoListProps } from '../../types/Interfaces';
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -10,7 +11,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import Tooltip from '@mui/material/Tooltip';
 
-function ListItem() {
+function ListItem({ task, setTodo }: ITodoListProps) {
   const [checked, setChecked] = useState(true);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,10 +31,10 @@ function ListItem() {
       <Card sx={{ maxWidth: 1 }}>
         <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <Typography variant="body1" color="text.secondary" mr={'auto'}>
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents
+            {task?.title}
           </Typography>
           <Tooltip title="Done" placement="top">
-            <Checkbox checked={checked} onChange={handleChange} style={{ marginRight: '24px' }} />
+            <Checkbox checked={task?.completed} onChange={handleChange} style={{ marginRight: '24px' }} />
           </Tooltip>
 
           <Tooltip title="Edit" placement="top">

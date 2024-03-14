@@ -1,29 +1,15 @@
 import Filters from '../Filters/Filters';
 import ListItem from '../ListItem/ListItem';
-import { TodoListItemsStyles, TodoListStyles } from './TodoList.styles';
 
-function TodoList() {
+import { TodoListItemsStyles, TodoListStyles } from './TodoList.styles';
+import { ITodoListProps } from '../../types/Interfaces';
+
+function TodoList({ todo, setTodo }: ITodoListProps) {
   return (
     <TodoListStyles>
       <Filters />
       <TodoListItemsStyles>
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
+        {todo?.map(task => <ListItem key={task.id} task={task} setTodo={setTodo} />)}
       </TodoListItemsStyles>
     </TodoListStyles>
   );
