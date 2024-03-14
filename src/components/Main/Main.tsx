@@ -24,7 +24,7 @@ function Main() {
 
   return (
     <MainStyles>
-      <AddInput />
+      <AddInput todo={todo} setTodo={setTodo} />
       <TodoList todo={todo} setTodo={setTodo} />
     </MainStyles>
   );
