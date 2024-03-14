@@ -1,11 +1,11 @@
-export interface ITodoItem {
+export interface ITodoItems {
   id: number;
   title: string;
   completed: boolean;
 }
 
 export interface ITodoListProps {
-  todo?: ITodoItem[];
-  setTodo: React.Dispatch<React.SetStateAction<ITodoItem[]>>;
-  task?: ITodoItem;
+  todo?: ITodoItems[];
+  setTodo: React.Dispatch<React.SetStateAction<ITodoItems[]>>;
+  task?: ITodoItems;
 }
