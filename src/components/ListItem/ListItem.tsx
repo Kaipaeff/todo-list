@@ -41,11 +41,11 @@ function ListItem({ index = 0, task }: IListItemProps) {
           </Tooltip>
 
           <Tooltip title="Edit" placement="top">
-            <EditOutlinedIconStyles onClick={handleEdit} color="action" />
+            <EditOutlinedIconStyles onClick={handleEdit} />
           </Tooltip>
 
           <Tooltip title="Delete" placement="top">
-            <DeleteOutlinedIconStyles onClick={handleDelete} color="action" style={{ cursor: 'pointer' }} />
+            <DeleteOutlinedIconStyles onClick={handleDelete} />
           </Tooltip>
         </CardContent>
       </Card>
