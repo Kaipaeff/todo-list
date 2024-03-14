@@ -16,6 +16,7 @@ function AddInput() {
           sx={{ width: '500px', mr: 1 }}
           size="small"
           placeholder="Что нужно сделать?"
+          autoFocus
           id="outlined-controlled"
           value={name}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
