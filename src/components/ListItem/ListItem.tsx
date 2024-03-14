@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { ListItemStyles } from './ListItem.styles';
-import { ITodoListProps } from '../../types/Interfaces';
+import { IListItemProps } from '../../types/Interfaces';
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -11,7 +11,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import Tooltip from '@mui/material/Tooltip';
 
-function ListItem({ task, setTodo }: ITodoListProps) {
+function ListItem({ index = 0, task, setTodo }: IListItemProps) {
   const [checked, setChecked] = useState(true);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,6 +30,9 @@ function ListItem({ task, setTodo }: ITodoListProps) {
     <ListItemStyles>
       <Card sx={{ maxWidth: 1 }}>
         <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Typography variant="body1" color="text.secondary" mr={'6px'}>
+            {`${index + 1}.`}
+          </Typography>
           <Typography variant="body1" color="text.secondary" mr={'auto'}>
             {task?.title}
           </Typography>
