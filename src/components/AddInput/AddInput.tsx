@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { AddInputStyles } from './AddInput.styles';
 import { ITodoListProps } from '../../types/Interfaces';
 
-import { addTodo } from '../../services/api/rest/addTodoApi';
+import { addTodoApi } from '../../services/api/rest/addTodoApi';
 import { getAllTodosApi } from '../../services/api/rest/getAllTodosApi';
 
 import { Box, TextField } from '@mui/material';
@@ -13,30 +13,36 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
 function AddInput({ todo, setTodo }: ITodoListProps) {
-  const [value, setValue] = useState('');
-  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState<string>('');
+  const [notification, setNotification] = useState<boolean>(false);
+  const [notificationTimeoutId, setNotificationTimeoutId] = useState<number | null>(null);
 
   const handleAdd = async () => {
-    console.log('clickAdd');
     if (value) {
       try {
-        await addTodo(value);
+        setValue('');
+        await addTodoApi(value);
         const todos = await getAllTodosApi();
         setTodo(todos);
-        setValue('');
-        setOpen(true);
+
+        if (notificationTimeoutId) {
+          clearTimeout(notificationTimeoutId);
+        }
+
+        const newTimeoutId = setTimeout(() => setNotification(true), 400);
+        setNotificationTimeoutId(newTimeoutId);
       } catch (error: any) {
         console.error('Error adding todo:', error.message);
+        throw error;
       }
     }
   };
 
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+  const handleClose = (_event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }
-
-    setOpen(false);
+    setNotification(false);
   };
 
   return (
@@ -64,10 +70,11 @@ function AddInput({ todo, setTodo }: ITodoListProps) {
       </Button>
 
       <Snackbar
-        open={open}
-        autoHideDuration={6000}
+        open={notification}
+        autoHideDuration={2000}
         onClose={handleClose}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        // style={{ marginTop: '400px' }}
       >
         <Alert onClose={handleClose} severity="success" variant="filled" sx={{ width: '100%' }}>
           Задача успешно добавлена!

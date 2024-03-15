@@ -1,5 +1,5 @@
 export interface ITodoItems {
-  id: number | string;
+  id: number;
   title: string;
   completed: boolean;
 }
@@ -9,7 +9,14 @@ export interface ITodoListProps {
   setTodo: React.Dispatch<React.SetStateAction<ITodoItems[]>>;
 }
 
-export interface IListItemProps extends Pick<ITodoListProps, 'setTodo'> {
+export interface IListItemProps extends ITodoListProps {
   task: ITodoItems;
   index: number;
+}
+
+export interface ModalProps {
+  open: boolean;
+  onClose: () => void;
+  // onConfirm: () => void;
+  children: React.ReactNode;
 }

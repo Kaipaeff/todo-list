@@ -2,7 +2,7 @@ import { ITodoItems } from '../../../types/Interfaces';
 
 const url = 'https://cb17b4fb6a0456c5.mokky.dev/todos';
 
-export const addTodo = async (title: string): Promise<ITodoItems> => {
+export const addTodoApi = async (title: string): Promise<ITodoItems> => {
   try {
     const response = await fetch(url, {
       method: 'POST',
