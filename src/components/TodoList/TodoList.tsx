@@ -9,7 +9,7 @@ function TodoList({ todo, setTodo }: ITodoListProps) {
     <TodoListStyles>
       <Filters />
       <TodoListItemsStyles>
-        {todo?.map((task, index) => <ListItem key={task.id} task={task} setTodo={setTodo} index={index} />)}
+        {todo?.map((task, index) => <ListItem key={task.id} task={task} todo={todo} setTodo={setTodo} index={index} />)}
       </TodoListItemsStyles>
     </TodoListStyles>
   );
