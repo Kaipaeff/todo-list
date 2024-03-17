@@ -18,3 +18,6 @@ export const backgroundColor = '#F8FAFC';
 export const borderColor = '#E2E8F0';
 export const inputTextColor = '#CBD5E1';
 export const textColor = '#706F6F';
+// export const deleteItemColor = '#f5b5b5';
+export const deleteItemColor = '#D9D9D9';
+export const addItemColor = '#EDF7ED';

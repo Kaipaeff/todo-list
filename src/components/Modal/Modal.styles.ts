@@ -19,8 +19,7 @@ export const ModalContentStyles = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 500px;
-  height: 200px;
   background-color: ${white};
-  padding: 50px 20px;
+  padding: 30px 20px;
   border-radius: 12px;
 `;
