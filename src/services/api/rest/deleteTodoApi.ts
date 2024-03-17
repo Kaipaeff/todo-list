@@ -6,9 +6,9 @@ export const deleteTodoApi = async (id: number): Promise<void> => {
       method: 'DELETE',
     });
 
-    // if (!response.ok) {
-    //   throw new Error(`Failed to delete todo. Status: ${response.status}`);
-    // }
+    if (!response.ok) {
+      throw new Error(`Failed to delete todo. Status: ${response.status}`);
+    }
   } catch (error: any) {
     console.error('Error deleting todo:', error.message);
     throw error;
