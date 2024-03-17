@@ -1,13 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
 
-import { deleteTodoApi } from '../../services/api/rest/deleteTodoApi';
-import { getAllTodosApi } from '../../services/api/rest/getAllTodosApi';
-
-import Modal from '../Modal/Modal';
-
-import { IListItemProps } from '../../types/Interfaces';
-import { ListItemStyles, DeleteOutlinedIconStyles, EditOutlinedIconStyles } from './ListItem.styles';
-
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -17,6 +9,11 @@ import { Box } from '@mui/material';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+
+import Modal from '../Modal/Modal';
+import { deleteTodoApi } from '../../services/api/rest/deleteTodoApi';
+import { IListItemProps } from '../../types/Interfaces';
+import { ListItemStyles, DeleteOutlinedIconStyles, EditOutlinedIconStyles } from './ListItem.styles';
 import { blue, deleteItemColor, white } from '../../styles/Colors';
 
 function ListItem({ index = 0, task, todo, setTodo }: IListItemProps) {
@@ -51,16 +48,15 @@ function ListItem({ index = 0, task, todo, setTodo }: IListItemProps) {
       let updateTodosTimerId;
       setShowModal(false);
       await deleteTodoApi(id);
+      // setNotificationDelete(true);
+      // const allTodosFromApi = await getAllTodosApi();
       setNotificationDelete(true);
-      const allTodosFromApi = await getAllTodosApi();
 
       if (updateTodosTimerId) {
         clearTimeout(updateTodosTimerId);
       }
 
-      updateTodosTimerId = setTimeout(() => {
-        setTodo(allTodosFromApi);
-      }, 800);
+      updateTodosTimerId = setTimeout(() => setTodo(todo.filter(el => el.id !== id)), 1000);
     } catch (error: any) {
       console.error('Error deleting todo:', error.message);
       throw error;
@@ -103,7 +99,7 @@ function ListItem({ index = 0, task, todo, setTodo }: IListItemProps) {
 
         <Snackbar
           open={notificationDelete}
-          autoHideDuration={800}
+          autoHideDuration={1000}
           onClose={handleClose}
           anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
           style={{ marginTop: '390px' }}
