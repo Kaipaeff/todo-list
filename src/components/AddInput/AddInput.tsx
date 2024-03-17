@@ -1,16 +1,15 @@
 import { useState } from 'react';
 
-import { AddInputStyles } from './AddInput.styles';
-import { ITodoListProps } from '../../types/Interfaces';
-
-import { addTodoApi } from '../../services/api/rest/addTodoApi';
-import { getAllTodosApi } from '../../services/api/rest/getAllTodosApi';
-
 import { Box, TextField } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+
+import { addTodoApi } from '../../services/api/rest/addTodoApi';
+import { getAllTodosApi } from '../../services/api/rest/getAllTodosApi';
+import { ITodoListProps } from '../../types/Interfaces';
+import { AddInputStyles } from './AddInput.styles';
 
 function AddInput({ todo, setTodo }: ITodoListProps) {
   const [value, setValue] = useState<string>('');
