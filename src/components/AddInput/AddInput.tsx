@@ -14,23 +14,16 @@ import Alert from '@mui/material/Alert';
 
 function AddInput({ todo, setTodo }: ITodoListProps) {
   const [value, setValue] = useState<string>('');
-  const [notification, setNotification] = useState<boolean>(false);
-  const [notificationTimeoutId, setNotificationTimeoutId] = useState<number | null>(null);
+  const [notificationAdd, setNotificationAdd] = useState<boolean>(false);
 
   const handleAdd = async () => {
     if (value) {
       try {
         setValue('');
         await addTodoApi(value);
-        const todos = await getAllTodosApi();
-        setTodo(todos);
-
-        if (notificationTimeoutId) {
-          clearTimeout(notificationTimeoutId);
-        }
-
-        const newTimeoutId = setTimeout(() => setNotification(true), 400);
-        setNotificationTimeoutId(newTimeoutId);
+        const allTodosFromApi = await getAllTodosApi();
+        setTodo(allTodosFromApi);
+        setNotificationAdd(true);
       } catch (error: any) {
         console.error('Error adding todo:', error.message);
         throw error;
@@ -42,7 +35,7 @@ function AddInput({ todo, setTodo }: ITodoListProps) {
     if (reason === 'clickaway') {
       return;
     }
-    setNotification(false);
+    setNotificationAdd(false);
   };
 
   return (
@@ -70,8 +63,8 @@ function AddInput({ todo, setTodo }: ITodoListProps) {
       </Button>
 
       <Snackbar
-        open={notification}
-        autoHideDuration={2000}
+        open={notificationAdd}
+        autoHideDuration={1000}
         onClose={handleClose}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         // style={{ marginTop: '400px' }}

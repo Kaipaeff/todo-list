@@ -13,13 +13,16 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Checkbox from '@mui/material/Checkbox';
 import Tooltip from '@mui/material/Tooltip';
-import { Snackbar, Alert, Button, Box } from '@mui/material';
+import { Box } from '@mui/material';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 function ListItem({ index = 0, task, todo, setTodo }: IListItemProps) {
   const [_checked, setChecked] = useState<boolean>(true);
-  const [notification, setNotification] = useState<boolean>(false);
-  const [scrollToBottomOnUpdate, setScrollToBottomOnUpdate] = useState<boolean>(true);
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [notificationDelete, setNotificationDelete] = useState<boolean>(false);
+  const [scrollToBottomOnUpdate, setScrollToBottomOnUpdate] = useState<boolean>(true);
 
   const listItemRef = useRef<HTMLDivElement>(null);
 
@@ -28,14 +31,7 @@ function ListItem({ index = 0, task, todo, setTodo }: IListItemProps) {
       listItemRef.current.lastElementChild?.scrollIntoView({ behavior: 'smooth' });
       setScrollToBottomOnUpdate(false);
     }
-  }, [todo, scrollToBottomOnUpdate]);
-
-  // useEffect(() => {
-  //   if (notification) {
-  //     setShowModal(false);
-  //     setTimeout(() => setNotification(false), 6000); // Закрыть уведомление через 6 секунд
-  //   }
-  // }, [notification]);
+  }, [todo]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
@@ -51,12 +47,19 @@ function ListItem({ index = 0, task, todo, setTodo }: IListItemProps) {
 
   const handleConfirmDelete = async (id: number) => {
     try {
+      let updateTodosTimerId;
       setShowModal(false);
       await deleteTodoApi(id);
-      const todos = await getAllTodosApi();
-      setTodo(todos);
-      setNotification(true);
-      // setTimeout(() => setNotification(true), 400);
+      setNotificationDelete(true);
+      const allTodosFromApi = await getAllTodosApi();
+
+      if (updateTodosTimerId) {
+        clearTimeout(updateTodosTimerId);
+      }
+
+      updateTodosTimerId = setTimeout(() => {
+        setTodo(allTodosFromApi);
+      }, 800);
     } catch (error: any) {
       console.error('Error deleting todo:', error.message);
       throw error;
@@ -67,6 +70,7 @@ function ListItem({ index = 0, task, todo, setTodo }: IListItemProps) {
     if (reason === 'clickaway') {
       return;
     }
+    setNotificationDelete(false);
   };
 
   return (
@@ -95,30 +99,31 @@ function ListItem({ index = 0, task, todo, setTodo }: IListItemProps) {
             </Tooltip>
           </CardContent>
         </Card>
+
+        <Snackbar
+          open={notificationDelete}
+          autoHideDuration={800}
+          onClose={handleClose}
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          style={{ marginTop: '198px' }}
+        >
+          <Alert onClose={handleClose} severity="success" variant="filled" sx={{ width: '100%' }}>
+            Задача удалена!
+          </Alert>
+        </Snackbar>
+
+        <Modal open={showModal} onClose={() => setShowModal(false)}>
+          <Typography variant="h6">Вы уверены, что хотите удалить эту задачу?</Typography>
+          <Box>
+            <Button variant="outlined" sx={{ mr: '40px' }} onClick={() => setShowModal(false)}>
+              Отмена
+            </Button>
+            <Button variant="outlined" color="error" onClick={() => handleConfirmDelete(task.id)}>
+              Удалить
+            </Button>
+          </Box>
+        </Modal>
       </ListItemStyles>
-
-      <Modal open={showModal} onClose={() => setShowModal(false)}>
-        <Typography variant="h6">Вы уверены, что хотите удалить эту задачу?</Typography>
-        <Box>
-          <Button variant="outlined" sx={{ mr: '40px' }} onClick={() => setShowModal(false)}>
-            Отмена
-          </Button>
-          <Button variant="outlined" color="error" onClick={() => handleConfirmDelete(task.id)}>
-            Удалить
-          </Button>
-        </Box>
-      </Modal>
-
-      <Snackbar
-        open={notification}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      >
-        <Alert onClose={handleClose} severity="success" variant="filled" sx={{ width: '100%' }}>
-          Задача удалена!
-        </Alert>
-      </Snackbar>
     </>
   );
 }
