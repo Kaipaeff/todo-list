@@ -50,6 +50,7 @@ function AddInput({ todo, setTodo }: ITodoListProps) {
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setValue(event.target.value);
           }}
+          inputProps={{ maxLength: 35 }}
         />
       </Box>
       <ClearIcon
@@ -66,10 +67,10 @@ function AddInput({ todo, setTodo }: ITodoListProps) {
         open={notificationAdd}
         autoHideDuration={1000}
         onClose={handleClose}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        // style={{ marginTop: '400px' }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        style={{ marginTop: '390px' }}
       >
-        <Alert onClose={handleClose} severity="success" variant="filled" sx={{ width: '100%' }}>
+        <Alert severity="success" variant="standard" sx={{ width: '100%' }}>
           Задача успешно добавлена!
         </Alert>
       </Snackbar>

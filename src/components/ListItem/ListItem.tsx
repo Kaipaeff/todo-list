@@ -17,6 +17,7 @@ import { Box } from '@mui/material';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import { blue, deleteItemColor, white } from '../../styles/Colors';
 
 function ListItem({ index = 0, task, todo, setTodo }: IListItemProps) {
   const [_checked, setChecked] = useState<boolean>(true);
@@ -76,7 +77,7 @@ function ListItem({ index = 0, task, todo, setTodo }: IListItemProps) {
   return (
     <>
       <ListItemStyles ref={listItemRef}>
-        <Card sx={{ maxWidth: 1 }}>
+        <Card sx={{ maxWidth: 1, backgroundColor: showModal ? deleteItemColor : white }}>
           <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <Typography variant="body1" color="text.secondary" mr={'6px'} fontSize={'18px'} fontWeight={'700'}>
               {`${index + 1}.`}
@@ -105,15 +106,20 @@ function ListItem({ index = 0, task, todo, setTodo }: IListItemProps) {
           autoHideDuration={800}
           onClose={handleClose}
           anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-          style={{ marginTop: '198px' }}
+          style={{ marginTop: '390px' }}
         >
-          <Alert onClose={handleClose} severity="success" variant="filled" sx={{ width: '100%' }}>
-            Задача удалена!
+          <Alert severity="error" variant="standard" sx={{ width: '100%' }}>
+            Задача успешно удалена!
           </Alert>
         </Snackbar>
 
         <Modal open={showModal} onClose={() => setShowModal(false)}>
-          <Typography variant="h6">Вы уверены, что хотите удалить эту задачу?</Typography>
+          <Typography variant="h6" mb={1}>
+            Вы уверены, что хотите удалить задачу
+          </Typography>
+          <Typography variant="h6" mb={3} color={blue}>
+            {`"${task.title}"`}
+          </Typography>
           <Box>
             <Button variant="outlined" sx={{ mr: '40px' }} onClick={() => setShowModal(false)}>
               Отмена
