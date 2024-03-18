@@ -1,7 +1,6 @@
 import { ITodoItems } from '../../../types/Interfaces';
 
-const url = 'https://cb17b4fb6a0456c5.mokky.dev/todos'; //Mokky
-// const url = 'https://jsonplaceholder.typicode.com/todos'; //Placeholder
+const url = 'https://cb17b4fb6a0456c5.mokky.dev/todos';
 
 export const getAllTodosApi = async (): Promise<ITodoItems[]> => {
   try {
