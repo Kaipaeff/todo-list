@@ -19,7 +19,7 @@ function Main() {
 
   return (
     <MainStyles>
-      <AddInput todo={todo} setTodo={setTodo} />
+      <AddInput setTodo={setTodo} />
       <TodoList todo={todo} setTodo={setTodo} />
     </MainStyles>
   );

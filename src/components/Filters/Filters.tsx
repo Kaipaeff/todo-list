@@ -1,10 +1,11 @@
+import { memo } from 'react';
+import { Divider } from '@mui/material';
+
 import TotalItemsCount from '../TotalItemsCount/TotalItemsCount';
 import ActiveModeTabs from '../ActiveModeTabs/ActiveModeTabs';
 
 import { IFiltersProps } from '../../types/Interfaces';
 import { FiltersStyles } from './Filters.styles';
-
-import { Divider } from '@mui/material';
 
 function Filters({ todo, setActiveTab }: IFiltersProps) {
   return (
@@ -18,4 +19,4 @@ function Filters({ todo, setActiveTab }: IFiltersProps) {
   );
 }
 
-export default Filters;
+export default memo(Filters);

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { HeaderStyles, LogoImage } from './Header.styles';
 import logo from '../../assets/img/images/logo.svg';
 
@@ -9,4 +10,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default memo(Header);

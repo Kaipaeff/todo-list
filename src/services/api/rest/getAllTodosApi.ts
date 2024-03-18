@@ -1,7 +1,7 @@
 import { ITodoItems } from '../../../types/Interfaces';
 
 const url = 'https://cb17b4fb6a0456c5.mokky.dev/todos';
-// const url = 'http://localhost:3000/todos';
+// const url = 'http://localhost:3000/todos'; //reserve api
 
 export const getAllTodosApi = async (): Promise<ITodoItems[]> => {
   try {

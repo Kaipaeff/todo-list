@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 
 import { Box, TextField, Button, Snackbar, Alert } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -8,11 +8,11 @@ import { getAllTodosApi } from '../../services/api/rest/getAllTodosApi';
 import { ITodoListProps } from '../../types/Interfaces';
 import { AddInputStyles } from './AddInput.styles';
 
-function AddInput({ todo, setTodo }: ITodoListProps) {
+function AddInput({ setTodo }: ITodoListProps) {
   const [value, setValue] = useState<string>('');
   const [notificationAdd, setNotificationAdd] = useState<boolean>(false);
 
-  const handleAdd = async () => {
+  const handleAdd = useCallback(async () => {
     if (value) {
       try {
         setValue('');
@@ -25,7 +25,7 @@ function AddInput({ todo, setTodo }: ITodoListProps) {
         throw error;
       }
     }
-  };
+  }, [value]);
 
   const handleClose = (_event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {

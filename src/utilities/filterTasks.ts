@@ -1,6 +1,6 @@
 import { ITodoItems } from '../types/Interfaces';
 
-const filterTasks = (activeTab: number, todo: ITodoItems[]) => {
+export const filterTasks = (activeTab: number, todo: ITodoItems[]) => {
   if (activeTab === 0) {
     return todo;
   } else if (activeTab === 1) {
@@ -9,5 +9,3 @@ const filterTasks = (activeTab: number, todo: ITodoItems[]) => {
     return todo.filter(task => task.completed);
   }
 };
-
-export default filterTasks;

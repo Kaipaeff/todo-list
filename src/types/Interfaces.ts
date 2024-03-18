@@ -5,7 +5,7 @@ export interface ITodoItems {
 }
 
 export interface ITodoListProps {
-  todo: ITodoItems[] | [];
+  todo?: ITodoItems[] | [];
   setTodo: React.Dispatch<React.SetStateAction<ITodoItems[]>>;
   setActiveTab?: React.Dispatch<React.SetStateAction<number>>;
 }
