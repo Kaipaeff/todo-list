@@ -7,7 +7,7 @@ import { TodoListItemsStyles, TodoListStyles } from './TodoList.styles';
 function TodoList({ todo, setTodo }: ITodoListProps) {
   return (
     <TodoListStyles>
-      <Filters />
+      <Filters todo={todo}/>
       <TodoListItemsStyles>
         {todo?.map((task, index) => <ListItem key={task.id} task={task} todo={todo} setTodo={setTodo} index={index} />)}
       </TodoListItemsStyles>

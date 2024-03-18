@@ -50,6 +50,7 @@ function ListItem({ index = 0, task, todo, setTodo }: IListItemProps) {
       await deleteTodoApi(id);
       // setNotificationDelete(true);
       // const allTodosFromApi = await getAllTodosApi();
+      // setTodo(allTodosFromApi)
       setNotificationDelete(true);
 
       if (updateTodosTimerId) {

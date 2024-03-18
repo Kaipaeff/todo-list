@@ -17,6 +17,9 @@ export interface IListItemProps extends ITodoListProps {
 export interface ModalProps {
   open: boolean;
   onClose: () => void;
-  // onConfirm: () => void;
   children: React.ReactNode;
 }
+
+export interface IFiltersProps extends Pick<ITodoListProps, 'todo'> {}
+
+export interface ITotalItemsCountProps extends IFiltersProps {}

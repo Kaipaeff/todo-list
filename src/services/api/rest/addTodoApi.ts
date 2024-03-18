@@ -1,6 +1,6 @@
 const url = 'https://cb17b4fb6a0456c5.mokky.dev/todos';
 
-export const addTodoApi = async (title: string): Promise<void> => {
+export const addTodoApi = async (title: string, completed = false): Promise<void> => {
   try {
     const response = await fetch(url, {
       method: 'POST',
@@ -8,7 +8,7 @@ export const addTodoApi = async (title: string): Promise<void> => {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ title }),
+      body: JSON.stringify({ title, completed }),
     });
 
     if (!response.ok) {
