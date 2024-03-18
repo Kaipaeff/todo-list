@@ -3,23 +3,18 @@ import { useEffect, useState } from 'react';
 import AddInput from '../AddInput/AddInput';
 import TodoList from '../TodoList/TodoList';
 
-import { MainStyles } from './Main.styles';
-import { ITodoItems } from '../../types/Interfaces';
 import { getAllTodosApi } from '../../services/api/rest/getAllTodosApi';
+import { ITodoItems } from '../../types/Interfaces';
+import { MainStyles } from './Main.styles';
 
 function Main() {
   const [todo, setTodo] = useState<ITodoItems[] | []>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const todos = await getAllTodosApi();
-        setTodo(todos);
-      } catch (error: any) {
-        console.error('Error fetching todos:', error.message);
-      }
-    };
-    fetchData();
+    (async () => {
+      const allTodosFromApi = await getAllTodosApi();
+      setTodo(allTodosFromApi);
+    })();
   }, []);
 
   return (
