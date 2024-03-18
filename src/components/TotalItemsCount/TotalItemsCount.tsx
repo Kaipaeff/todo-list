@@ -1,16 +1,21 @@
 import Badge from '@mui/material/Badge';
 import { TotalItemsCountStyles } from './TotalItemsCount.styles';
+import { ITotalItemsCountProps } from '../../types/Interfaces';
 
-function TotalItemsCount() {
+function TotalItemsCount({ todo }: ITotalItemsCountProps) {
+  const totalCount = todo.length;
+  const completedCount = todo.filter(el => el.completed).length;
+  const inProgressCount = totalCount - completedCount;
+
   return (
     <>
-      <Badge badgeContent={19} color="primary" sx={{ mr: '32px', pr: '12px' }}>
+      <Badge badgeContent={totalCount} color="primary" sx={{ mr: '32px', pr: '12px' }}>
         <TotalItemsCountStyles>Всего</TotalItemsCountStyles>
       </Badge>
-      <Badge badgeContent={4} color="primary" sx={{ mr: '32px', pr: '12px' }}>
+      <Badge badgeContent={inProgressCount} color="primary" sx={{ mr: '32px', pr: '12px' }}>
         <TotalItemsCountStyles>В процессе</TotalItemsCountStyles>
       </Badge>
-      <Badge badgeContent={15} color="primary" sx={{ mr: '32px', pr: '12px' }}>
+      <Badge badgeContent={completedCount} color="primary" sx={{ mr: '32px', pr: '12px' }}>
         <TotalItemsCountStyles>Выполнено</TotalItemsCountStyles>
       </Badge>
     </>

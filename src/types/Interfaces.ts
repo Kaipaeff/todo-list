@@ -19,3 +19,7 @@ export interface ModalProps {
   onClose: () => void;
   children: React.ReactNode;
 }
+
+export interface IFiltersProps extends Pick<ITodoListProps, 'todo'> {}
+
+export interface ITotalItemsCountProps extends IFiltersProps {}
