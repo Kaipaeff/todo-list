@@ -6,12 +6,12 @@ import { FiltersStyles } from './Filters.styles';
 
 import { Divider } from '@mui/material';
 
-function Filters({ todo }: IFiltersProps) {
+function Filters({ todo, setActiveTab }: IFiltersProps) {
   return (
     <>
       <FiltersStyles>
         <TotalItemsCount todo={todo} />
-        <ActiveModeTabs />
+        <ActiveModeTabs setActiveTab={setActiveTab} />
       </FiltersStyles>
       <Divider variant="fullWidth" sx={{ mb: '24px' }} />
     </>

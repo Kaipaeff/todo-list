@@ -7,6 +7,7 @@ export interface ITodoItems {
 export interface ITodoListProps {
   todo: ITodoItems[] | [];
   setTodo: React.Dispatch<React.SetStateAction<ITodoItems[]>>;
+  setActiveTab?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface IListItemProps extends ITodoListProps {
@@ -20,6 +21,8 @@ export interface ModalProps {
   children: React.ReactNode;
 }
 
-export interface IFiltersProps extends Pick<ITodoListProps, 'todo'> {}
+export interface IFiltersProps extends Pick<ITodoListProps, 'todo' | 'setActiveTab'> {}
 
 export interface ITotalItemsCountProps extends IFiltersProps {}
+
+export interface IActiveModeTabsProps extends Pick<ITodoListProps, 'setActiveTab'> {}

@@ -1,14 +1,18 @@
 import { useState } from 'react';
 
 import { Box } from '@mui/material';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+import { Tabs, Tab } from '@mui/material';
 
-function ActiveModeTabs() {
+import { IActiveModeTabsProps } from '../../types/Interfaces';
+
+function ActiveModeTabs({ setActiveTab }: IActiveModeTabsProps) {
   const [value, setValue] = useState(0);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+    if (setActiveTab) {
+      setActiveTab(newValue);
+    }
   };
 
   return (
