@@ -13,7 +13,7 @@ function TodoList({ todo, setTodo }: ITodoListProps) {
 
   return (
     <TodoListStyles>
-      <Filters todo={filteredTasks} setActiveTab={setActiveTab} />
+      <Filters todo={todo} setActiveTab={setActiveTab} />
       <TodoListItemsStyles>
         {filteredTasks.map((task, index) => (
           <ListItem key={task.id} task={task} todo={todo} setTodo={setTodo} index={index} />
