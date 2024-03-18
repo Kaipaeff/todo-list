@@ -1,7 +1,5 @@
 import { memo, useState } from 'react';
-
 import { Box, Tabs, Tab } from '@mui/material';
-
 import { IActiveModeTabsProps } from '../../types/Interfaces';
 
 function ActiveModeTabs({ setActiveTab }: IActiveModeTabsProps) {

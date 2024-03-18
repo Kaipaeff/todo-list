@@ -1,7 +1,8 @@
+import { memo } from 'react';
 import { ModalProps } from '../../types/Interfaces';
 import { ModalOverlayStyles, ModalContentStyles } from './Modal.styles';
 
-const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
+function Modal({ open, onClose, children }: ModalProps) {
   if (!open) return null;
 
   const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -15,6 +16,6 @@ const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
       <ModalContentStyles>{children}</ModalContentStyles>
     </ModalOverlayStyles>
   );
-};
+}
 
-export default Modal;
+export default memo(Modal);

@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, memo } from 'react';
 
 import { Card, CardContent, Typography, Checkbox, Tooltip, Box, Button, Snackbar, Alert } from '@mui/material';
 
@@ -8,7 +8,7 @@ import { IListItemProps } from '../../types/Interfaces';
 import { ListItemStyles, DeleteOutlinedIconStyles, EditOutlinedIconStyles } from './ListItem.styles';
 import { blue, deleteItemColor, white } from '../../styles/Colors';
 
-function ListItem({ index = 0, task, todo, setTodo }: IListItemProps) {
+function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
   const [_checked, setChecked] = useState<boolean>(true);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [notificationDelete, setNotificationDelete] = useState<boolean>(false);
@@ -31,7 +31,7 @@ function ListItem({ index = 0, task, todo, setTodo }: IListItemProps) {
     console.log('edit clicked!');
   };
 
-  const handleDelete = async () => {
+  const handleDelete = () => {
     setShowModal(true);
   };
 
@@ -123,4 +123,4 @@ function ListItem({ index = 0, task, todo, setTodo }: IListItemProps) {
   );
 }
 
-export default ListItem;
+export default memo(ListItem);

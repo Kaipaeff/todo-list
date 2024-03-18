@@ -1,16 +1,16 @@
-import { useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 
 import Filters from '../Filters/Filters';
 import ListItem from '../ListItem/ListItem';
 
-import filterTasks from '../../utilities/filterTasks';
+import { filterTasks } from '../../utilities/filterTasks';
 import { ITodoListProps } from '../../types/Interfaces';
 import { TodoListItemsStyles, TodoListStyles } from './TodoList.styles';
 
-function TodoList({ todo, setTodo }: ITodoListProps) {
+function TodoList({ todo = [], setTodo }: ITodoListProps) {
   const [activeTab, setActiveTab] = useState<number>(0);
 
-  const filteredTasks = filterTasks(activeTab, todo);
+  const filteredTasks = useMemo(() => filterTasks(activeTab, todo), [activeTab, todo]);
 
   return (
     <TodoListStyles>
@@ -24,4 +24,4 @@ function TodoList({ todo, setTodo }: ITodoListProps) {
   );
 }
 
-export default TodoList;
+export default memo(TodoList);
