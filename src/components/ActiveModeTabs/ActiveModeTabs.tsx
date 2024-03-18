@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 
 import { Box, Tabs, Tab } from '@mui/material';
 
@@ -25,4 +25,4 @@ function ActiveModeTabs({ setActiveTab }: IActiveModeTabsProps) {
   );
 }
 
-export default ActiveModeTabs;
+export default memo(ActiveModeTabs);

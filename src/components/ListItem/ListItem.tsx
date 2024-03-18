@@ -1,14 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import Checkbox from '@mui/material/Checkbox';
-import Tooltip from '@mui/material/Tooltip';
-import { Box } from '@mui/material';
-import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
+import { Card, CardContent, Typography, Checkbox, Tooltip, Box, Button, Snackbar, Alert } from '@mui/material';
 
 import Modal from '../Modal/Modal';
 import { deleteTodoApi } from '../../services/api/rest/deleteTodoApi';

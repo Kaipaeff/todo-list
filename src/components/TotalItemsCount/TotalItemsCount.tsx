@@ -1,7 +1,9 @@
-import { ITotalItemsCountProps } from '../../types/Interfaces';
-import { TotalItemsCountStyles } from './TotalItemsCount.styles';
+import { memo } from 'react';
 
 import Badge from '@mui/material/Badge';
+
+import { ITotalItemsCountProps } from '../../types/Interfaces';
+import { TotalItemsCountStyles } from './TotalItemsCount.styles';
 
 function TotalItemsCount({ todo }: ITotalItemsCountProps) {
   const totalCount = todo.length;
@@ -23,4 +25,4 @@ function TotalItemsCount({ todo }: ITotalItemsCountProps) {
   );
 }
 
-export default TotalItemsCount;
+export default memo(TotalItemsCount);
