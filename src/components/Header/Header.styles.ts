@@ -5,7 +5,7 @@ export const HeaderStyles = styled.header`
   position: fixed;
   top: 0;
   left: 0;
-  padding: 8px 32px 0;
+  padding: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
