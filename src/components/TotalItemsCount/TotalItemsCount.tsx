@@ -1,6 +1,7 @@
-import Badge from '@mui/material/Badge';
-import { TotalItemsCountStyles } from './TotalItemsCount.styles';
 import { ITotalItemsCountProps } from '../../types/Interfaces';
+import { TotalItemsCountStyles } from './TotalItemsCount.styles';
+
+import Badge from '@mui/material/Badge';
 
 function TotalItemsCount({ todo }: ITotalItemsCountProps) {
   const totalCount = todo.length;

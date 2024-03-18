@@ -1,7 +1,7 @@
-import { IFiltersProps } from '../../types/Interfaces';
-import ActiveModeTabs from '../ActiveModeTabs/ActiveModeTabs';
 import TotalItemsCount from '../TotalItemsCount/TotalItemsCount';
+import ActiveModeTabs from '../ActiveModeTabs/ActiveModeTabs';
 
+import { IFiltersProps } from '../../types/Interfaces';
 import { FiltersStyles } from './Filters.styles';
 
 import { Divider } from '@mui/material';
