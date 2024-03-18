@@ -1,4 +1,5 @@
 const url = 'https://cb17b4fb6a0456c5.mokky.dev/todos';
+// const url = 'http://localhost:3000/todos';
 
 export const deleteTodoApi = async (id: number): Promise<void> => {
   try {
