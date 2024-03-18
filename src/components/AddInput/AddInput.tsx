@@ -1,10 +1,7 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 
-import { Box, TextField } from '@mui/material';
+import { Box, TextField, Button, Snackbar, Alert } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
-import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
 
 import { addTodoApi } from '../../services/api/rest/addTodoApi';
 import { getAllTodosApi } from '../../services/api/rest/getAllTodosApi';
@@ -77,4 +74,4 @@ function AddInput({ todo, setTodo }: ITodoListProps) {
   );
 }
 
-export default AddInput;
+export default memo(AddInput);

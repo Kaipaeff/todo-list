@@ -1,10 +1,11 @@
+import { useState } from 'react';
+
 import Filters from '../Filters/Filters';
 import ListItem from '../ListItem/ListItem';
 
+import filterTasks from '../../utilities/filterTasks';
 import { ITodoListProps } from '../../types/Interfaces';
 import { TodoListItemsStyles, TodoListStyles } from './TodoList.styles';
-import { useState } from 'react';
-import filterTasks from '../../utilities/filterTasks';
 
 function TodoList({ todo, setTodo }: ITodoListProps) {
   const [activeTab, setActiveTab] = useState<number>(0);
