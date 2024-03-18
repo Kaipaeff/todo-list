@@ -17,6 +17,5 @@ export interface IListItemProps extends ITodoListProps {
 export interface ModalProps {
   open: boolean;
   onClose: () => void;
-  // onConfirm: () => void;
   children: React.ReactNode;
 }
