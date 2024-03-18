@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
-import { Box } from '@mui/material';
-import { Tabs, Tab } from '@mui/material';
+import { Box, Tabs, Tab } from '@mui/material';
 
 import { IActiveModeTabsProps } from '../../types/Interfaces';
 
