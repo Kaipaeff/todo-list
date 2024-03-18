@@ -12,7 +12,7 @@ export const HeaderStyles = styled.header`
   width: 100%;
   background-color: ${white};
   box-shadow: 0 4px 12px 3px rgba(2, 9, 51, 0.07);
-  /* z-index: 2; */
+  z-index: 2;
 `;
 
 export const LogoImage = styled.img`
