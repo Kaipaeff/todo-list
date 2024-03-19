@@ -10,6 +10,8 @@ export interface ITodoListProps {
   setActiveTab?: React.Dispatch<React.SetStateAction<number>>;
 }
 
+export interface IMainProps extends Pick<ITodoListProps, 'todo' | 'setTodo'> {}
+
 export interface IListItemProps extends ITodoListProps {
   task: ITodoItems;
   index: number;
@@ -26,3 +28,7 @@ export interface IFiltersProps extends Pick<ITodoListProps, 'todo' | 'setActiveT
 export interface ITotalItemsCountProps extends IFiltersProps {}
 
 export interface IActiveModeTabsProps extends Pick<ITodoListProps, 'setActiveTab'> {}
+
+export interface IHeaderProps extends Pick<IMainProps, 'todo'> {}
+
+export interface ILinearProgressBarProps extends Pick<IHeaderProps, 'todo'> {}

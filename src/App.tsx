@@ -1,14 +1,26 @@
+import { useEffect, useState } from 'react';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 
+import { getAllTodosApi } from './services/api/rest/getAllTodosApi';
+import { ITodoItems } from './types/Interfaces';
 import { GlobalStyles } from './styles/GlobalStyles';
 
 function App() {
+  const [todo, setTodo] = useState<ITodoItems[] | []>([]);
+
+  useEffect(() => {
+    (async () => {
+      const allTodosFromApi = await getAllTodosApi();
+      setTodo(allTodosFromApi);
+    })();
+  }, []);
+
   return (
     <>
       <GlobalStyles />
-      <Header />
-      <Main />
+      <Header todo={todo} />
+      <Main todo={todo} setTodo={setTodo} />
     </>
   );
 }
