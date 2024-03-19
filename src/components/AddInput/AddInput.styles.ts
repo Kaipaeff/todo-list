@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { borderColor, textColor, blue } from '../../styles/Colors';
+import { borderColor, textColor, deepGrey, lightBlue } from '../../styles/Colors';
 
 export const AddInputStyles = styled.div`
   position: relative;
@@ -18,7 +18,7 @@ export const InputStyles = styled.input`
   border: 1px solid ${borderColor};
   color: ${textColor};
   &:focus {
-    border-color: ${blue};
-    opacity: 0.48;
+    border-color: ${lightBlue};
+    color: ${deepGrey};
   }
 `;
