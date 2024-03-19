@@ -1,5 +1,4 @@
 import { memo, useCallback, useState } from 'react';
-
 import { Box, TextField, Button, Snackbar, Alert } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 
@@ -11,13 +10,17 @@ import { AddInputStyles } from './AddInput.styles';
 function AddInput({ setTodo }: ITodoListProps) {
   const [value, setValue] = useState<string>('');
   const [notificationAdd, setNotificationAdd] = useState<boolean>(false);
+  let abortController: AbortController;
 
   const handleAdd = useCallback(async () => {
     if (value) {
       try {
+        abortController?.abort();
+        abortController = new AbortController();
+        const signal = abortController.signal;
         setValue('');
-        await addTodoApi(value);
-        const allTodosFromApi = await getAllTodosApi();
+        await addTodoApi(value, signal);
+        const allTodosFromApi = await getAllTodosApi(signal);
         setTodo(allTodosFromApi);
         setNotificationAdd(true);
       } catch (error: any) {

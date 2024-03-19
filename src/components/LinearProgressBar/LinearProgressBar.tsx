@@ -1,5 +1,5 @@
-import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgress';
-import { Box, Typography } from '@mui/material';
+import { memo } from 'react';
+import { LinearProgress, LinearProgressProps, Box, Typography } from '@mui/material';
 import { ILinearProgressBarProps } from '../../types/Interfaces';
 
 function LinearProgressBar({ todo = [] }: ILinearProgressBarProps) {
@@ -20,7 +20,7 @@ function LinearProgressBar({ todo = [] }: ILinearProgressBarProps) {
           />
         </Box>
         <Box>
-          <Typography variant="subtitle2" color="text.secondary">
+          <Typography variant="subtitle2" color="text.secondary" sx={{width: '52px'}}>
             {`${props.value}%`}
           </Typography>
         </Box>
@@ -33,10 +33,10 @@ function LinearProgressBar({ todo = [] }: ILinearProgressBarProps) {
   const progress = parseFloat(((completedCount / totalCount) * 100).toFixed(2));
 
   return (
-    <Box sx={{ width: '70%', mr: 'auto', alignSelf: 'center', pt: '3px' }}>
-      <LinearProgressWithLabel value={progress ? progress : 0} color="primary" />
+    <Box sx={{ width: '300px', alignSelf: 'center', pt: '3px' }}>
+      <LinearProgressWithLabel value={progress || 0} color="primary" />
     </Box>
   );
 }
 
-export default LinearProgressBar;
+export default memo(LinearProgressBar);
