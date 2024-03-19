@@ -1,16 +1,24 @@
-import { memo, useCallback, useState } from 'react';
-import { Box, TextField, Button, Snackbar, Alert } from '@mui/material';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { Button, Snackbar, Alert } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 
 import { addTodoApi } from '../../services/api/rest/addTodoApi';
 import { getAllTodosApi } from '../../services/api/rest/getAllTodosApi';
 import { ITodoListProps } from '../../types/Interfaces';
-import { AddInputStyles } from './AddInput.styles';
+import { AddInputStyles, InputStyles } from './AddInput.styles';
 
 function AddInput({ setTodo }: ITodoListProps) {
   const [value, setValue] = useState<string>('');
   const [notificationAdd, setNotificationAdd] = useState<boolean>(false);
+  const addInputRef = useRef<HTMLInputElement>(null);
+
   let abortController: AbortController;
+
+  useEffect(() => {
+    if (addInputRef.current) {
+      addInputRef.current.focus();
+    }
+  }, []);
 
   const handleAdd = useCallback(async () => {
     if (value) {
@@ -30,6 +38,16 @@ function AddInput({ setTodo }: ITodoListProps) {
     }
   }, [value]);
 
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (value && event.key === 'Enter') {
+      handleAdd();
+      event.preventDefault();
+    }
+    if (event.key === 'Escape') {
+      setValue('');
+    }
+  };
+
   const handleClose = (_event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
@@ -38,27 +56,27 @@ function AddInput({ setTodo }: ITodoListProps) {
   };
 
   return (
-    <AddInputStyles style={{ position: 'relative' }}>
-      <Box sx={{ display: 'flex' }} component="form" noValidate autoComplete="off">
-        <TextField
-          sx={{ width: '500px', mr: 1 }}
-          size="small"
-          placeholder="Что нужно сделать?"
-          id="outlined-controlled"
-          value={value}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setValue(event.target.value);
-          }}
-          inputProps={{ maxLength: 35 }}
-        />
-      </Box>
+    <AddInputStyles>
+      <InputStyles
+        type="text"
+        placeholder="Что нужно сделать?"
+        value={value}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setValue(event.target.value);
+        }}
+        onKeyDown={handleKeyPress}
+        maxLength={35}
+        ref={addInputRef}
+      />
+
       <ClearIcon
         style={{ position: 'absolute', right: '150', cursor: 'pointer' }}
         onClick={(_event: React.MouseEvent) => {
           setValue('');
         }}
       />
-      <Button onClick={handleAdd} sx={{ height: '40px', padding: '0 24px' }} color="primary" variant="outlined">
+
+      <Button onClick={handleAdd} sx={{ height: '39px', padding: '0 24px' }} color="primary" variant="outlined">
         Добавить
       </Button>
 

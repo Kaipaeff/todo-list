@@ -4,7 +4,8 @@ import { ILinearProgressBarProps } from '../../types/Interfaces';
 
 function LinearProgressBar({ todo = [] }: ILinearProgressBarProps) {
   function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
-    const progressColor = props.value >= 50 ? 'success' : props.value < 30 ? 'error' : 'warning';
+    const progressColor =
+      props.value >= 50 ? 'success' : props.value === 0 ? 'inherit' : props.value < 30 ? 'error' : 'warning';
 
     return (
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -20,7 +21,7 @@ function LinearProgressBar({ todo = [] }: ILinearProgressBarProps) {
           />
         </Box>
         <Box>
-          <Typography variant="subtitle2" color="text.secondary" sx={{width: '52px'}}>
+          <Typography variant="subtitle2" color="text.secondary" sx={{ width: '52px' }}>
             {`${props.value}%`}
           </Typography>
         </Box>
