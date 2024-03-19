@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef, memo } from 'react';
-
 import { Card, CardContent, Typography, Checkbox, Tooltip, Box, Button, Snackbar, Alert } from '@mui/material';
 
 import Modal from '../Modal/Modal';
