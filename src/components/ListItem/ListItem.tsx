@@ -53,7 +53,7 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
         clearTimeout(updateTodosTimerId);
       }
 
-      updateTodosTimerId = setTimeout(() => setTodo(todo.filter(el => el.id !== id)), 1000);
+      updateTodosTimerId = setTimeout(() => setTodo(todo.filter(el => el.id !== id)), 600);
     } catch (error: any) {
       console.error('Error deleting todo:', error.message);
       throw error;
@@ -96,7 +96,7 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
 
         <Snackbar
           open={notificationDelete}
-          autoHideDuration={1000}
+          autoHideDuration={600}
           onClose={handleClose}
           anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
           style={{ marginTop: '390px' }}
