@@ -15,6 +15,7 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
   const [scrollToBottomOnUpdate, setScrollToBottomOnUpdate] = useState<boolean>(true);
 
   const listItemRef = useRef<HTMLDivElement>(null);
+  let abortController: AbortController;
 
   useEffect(() => {
     if (scrollToBottomOnUpdate && listItemRef.current) {
@@ -38,8 +39,11 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
   const handleConfirmDelete = async (id: number) => {
     try {
       let updateTodosTimerId;
+      abortController?.abort();
+      abortController = new AbortController();
+      const signal = abortController.signal;
       setShowModal(false);
-      await deleteTodoApi(id);
+      await deleteTodoApi(id, signal);
       // setNotificationDelete(true);
       // const allTodosFromApi = await getAllTodosApi();
       // setTodo(allTodosFromApi)
