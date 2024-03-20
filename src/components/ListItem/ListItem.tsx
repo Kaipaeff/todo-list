@@ -3,11 +3,12 @@ import { Card, CardContent, Typography, Checkbox, Tooltip, Box, Button, Snackbar
 
 import Modal from '../Modal/Modal';
 import { deleteTodoApi } from '../../services/api/rest/deleteTodoApi';
-import { IListItemProps } from '../../types/Interfaces';
-import { ListItemStyles, DeleteOutlinedIconStyles, EditOutlinedIconStyles } from './ListItem.styles';
-import { blue, deleteItemColor, white } from '../../styles/Colors';
 import { updateCheckedTodoApi } from '../../services/api/rest/updateCheckedTodoApi';
 import { getAllTodosApi } from '../../services/api/rest/getAllTodosApi';
+
+import { IListItemProps } from '../../types/Interfaces';
+import { ListItemStyles, DeleteOutlinedIconStyles, EditOutlinedIconStyles } from './ListItem.styles';
+import { blue, deleteItemColor, textColor, white } from '../../styles/Colors';
 
 function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
   const [checked, setChecked] = useState<boolean>(task.completed);
@@ -104,21 +105,37 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
     <>
       <ListItemStyles ref={listItemRef}>
         <Card sx={{ maxWidth: 1, backgroundColor: showModal ? deleteItemColor : white }}>
-          <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <CardContent
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              // backgroundColor: checked ? backgroundColor : white,
+            }}
+          >
             <Typography variant="body1" color="text.secondary" mr={'6px'} fontSize={'18px'} fontWeight={'700'}>
               {`${index + 1}.`}
             </Typography>
 
-            <Typography variant="body1" color="text.secondary" mr={'auto'} fontSize={'18px'}>
+            <Typography
+              variant="body1"
+              sx={{
+                textDecoration: checked ? 'line-through' : 'none',
+                fontWeight: checked ? 500 : 400,
+                color: checked ? blue : textColor,
+                fontSize: '18px',
+                marginRight: 'auto',
+              }}
+            >
               {task?.title}
             </Typography>
 
             <Tooltip title="Done" placement="top">
-              <Checkbox checked={checked} onChange={handleChange} style={{ marginRight: '24px' }} />
+              <Checkbox checked={checked} onChange={handleChange} style={{ marginRight: '32px' }} />
             </Tooltip>
 
             <Tooltip title="Edit" placement="top">
-              <EditOutlinedIconStyles onClick={handleEdit} />
+              <EditOutlinedIconStyles onClick={handleEdit} style={{ marginRight: '40px' }} />
             </Tooltip>
 
             <Tooltip title="Delete" placement="top">

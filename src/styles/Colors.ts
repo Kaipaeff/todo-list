@@ -9,6 +9,7 @@ export const blue = '#1976D2';
 export const lightBlue = '#8CBAE8';
 
 export const green = '#0A4A1B';
+export const lightGreen = '#85D685';
 export const neonGreen = '#2ED158';
 export const deepGreen = '#082A11';
 
@@ -21,3 +22,4 @@ export const inputTextColor = '#CBD5E1';
 export const textColor = '#706F6F';
 export const deleteItemColor = '#D9D9D9';
 export const addItemColor = '#EDF7ED'; //! Добавить заливку цветом на 3-5 сек при добавлении задачи?
+export const checkedItemColor = '#F4FFF4';
