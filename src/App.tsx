@@ -11,7 +11,9 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const allTodosFromApi = await getAllTodosApi();
+      const abortController = new AbortController();
+      const signal = abortController.signal;
+      const allTodosFromApi = await getAllTodosApi(signal);
       setTodo(allTodosFromApi);
     })();
   }, []);
