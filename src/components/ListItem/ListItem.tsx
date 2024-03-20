@@ -109,16 +109,22 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
               {`${index + 1}.`}
             </Typography>
 
-            <Typography variant="body1" color="text.secondary" mr={'auto'} fontSize={'18px'}>
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              mr={'auto'}
+              fontSize={'18px'}
+              sx={{ textDecoration: checked ? 'line-through' : 'none' }}
+            >
               {task?.title}
             </Typography>
 
             <Tooltip title="Done" placement="top">
-              <Checkbox checked={checked} onChange={handleChange} style={{ marginRight: '24px' }} />
+              <Checkbox checked={checked} onChange={handleChange} style={{ marginRight: '32px' }} />
             </Tooltip>
 
             <Tooltip title="Edit" placement="top">
-              <EditOutlinedIconStyles onClick={handleEdit} />
+              <EditOutlinedIconStyles onClick={handleEdit} style={{ marginRight: '40px' }} />
             </Tooltip>
 
             <Tooltip title="Delete" placement="top">
