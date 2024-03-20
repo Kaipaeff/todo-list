@@ -49,7 +49,7 @@ function AddInput({ setTodo }: ITodoListProps) {
     }
   };
 
-  const handleClose = (_event?: React.SyntheticEvent | Event, reason?: string) => {
+  const handleClose = (_: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }
