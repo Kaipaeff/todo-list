@@ -23,6 +23,18 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
     }
   }, [todo]);
 
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (showModal) {
+        if (event.key === 'Escape') {
+          setShowModal(false);
+        }
+      }
+    };
+    document.addEventListener('keydown', handleKeyPress);
+    return () => removeEventListener('keydown', handleKeyPress);
+  }, [showModal]);
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
   };
@@ -52,7 +64,7 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
         clearTimeout(updateTodosTimerId);
       }
 
-      updateTodosTimerId = setTimeout(() => setTodo(todo.filter(el => el.id !== id)), 600);
+      updateTodosTimerId = setTimeout(() => setTodo(todo.filter(el => el.id !== id)), 500);
     } catch (error: any) {
       console.error('Error deleting todo:', error.message);
       throw error;
@@ -95,7 +107,7 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
 
         <Snackbar
           open={notificationDelete}
-          autoHideDuration={600}
+          autoHideDuration={500}
           onClose={handleClose}
           anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
           style={{ marginTop: '390px' }}
