@@ -1,8 +1,26 @@
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { LinearProgress, LinearProgressProps, Box, Typography } from '@mui/material';
 import { ILinearProgressBarProps } from '../../types/Interfaces';
+import { getCompletedTaskValue } from '../../utilities/getCompletedTaskValue';
 
 function LinearProgressBar({ todo = [] }: ILinearProgressBarProps) {
+  const [progress, setProgress] = useState<number>(0);
+
+  useEffect(() => {
+    const cachedProgress = localStorage.getItem('progress');
+    if (cachedProgress !== null) {
+      setProgress(parseFloat(cachedProgress));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (todo.length) {
+      const completedValue = getCompletedTaskValue(todo);
+      setProgress(completedValue);
+      localStorage.setItem('progress', completedValue.toString());
+    }
+  }, [todo]);
+
   function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
     const progressColor =
       props.value >= 50 ? 'success' : props.value === 0 ? 'inherit' : props.value < 30 ? 'error' : 'warning';
@@ -29,13 +47,9 @@ function LinearProgressBar({ todo = [] }: ILinearProgressBarProps) {
     );
   }
 
-  const totalCount = todo.length;
-  const completedCount = todo.filter(el => el.completed).length;
-  const progress = parseFloat(((completedCount / totalCount) * 100).toFixed(2));
-
   return (
     <Box sx={{ width: '300px', alignSelf: 'center', pt: '3px' }}>
-      <LinearProgressWithLabel value={progress || 0} color="primary" />
+      {<LinearProgressWithLabel value={progress} color="primary" />}
     </Box>
   );
 }

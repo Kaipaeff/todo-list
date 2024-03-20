@@ -1,7 +1,7 @@
 {
   "todos": [
     {
-      "completed": false,
+      "completed": true,
       "title": "Первая задача",
       "id": "2790"
     },
@@ -11,17 +11,17 @@
       "id": "ac50"
     },
     {
-      "completed": false,
+      "completed": true,
       "title": "Четвертая задача",
       "id": "9e05"
     },
     {
-      "completed": false,
+      "completed": true,
       "title": "Пятая задача",
       "id": "222c"
     },
     {
-      "completed": false,
+      "completed": true,
       "title": "Шестая задача",
       "id": "1029"
     }
