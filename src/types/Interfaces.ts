@@ -32,6 +32,6 @@ export interface IActiveModeTabsProps extends Pick<ITodoListProps, 'setActiveTab
 export interface IHeaderProps extends Pick<IMainProps, 'todo'> {}
 
 export interface ILinearProgressBarProps extends Pick<IHeaderProps, 'todo'> {
-  progress: number;
-  setProgress: React.Dispatch<React.SetStateAction<number>>;
+  progress?: number;
+  setProgress?: React.Dispatch<React.SetStateAction<number>>;
 }

@@ -110,7 +110,6 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              // backgroundColor: checked ? backgroundColor : white,
             }}
           >
             <Typography variant="body1" color="text.secondary" mr={'6px'} fontSize={'18px'} fontWeight={'700'}>
@@ -160,7 +159,7 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
           <Typography variant="h6" mb={1}>
             Вы уверены, что хотите удалить задачу
           </Typography>
-          <Typography variant="h6" mb={3} color={blue}>
+          <Typography variant="h6" mb={3} color={blue} textAlign={'center'}>
             {`"${task.title}"`}
           </Typography>
           <Box>
