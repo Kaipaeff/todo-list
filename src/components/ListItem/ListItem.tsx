@@ -6,9 +6,11 @@ import { deleteTodoApi } from '../../services/api/rest/deleteTodoApi';
 import { IListItemProps } from '../../types/Interfaces';
 import { ListItemStyles, DeleteOutlinedIconStyles, EditOutlinedIconStyles } from './ListItem.styles';
 import { blue, deleteItemColor, white } from '../../styles/Colors';
+import { updateCheckedTodoApi } from '../../services/api/rest/updateCheckedTodoApi';
+import { getAllTodosApi } from '../../services/api/rest/getAllTodosApi';
 
 function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
-  const [_checked, setChecked] = useState<boolean>(true);
+  const [checked, setChecked] = useState<boolean>(task.completed);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [notificationDelete, setNotificationDelete] = useState<boolean>(false);
   const [scrollToBottomOnUpdate, setScrollToBottomOnUpdate] = useState<boolean>(true);
@@ -23,9 +25,26 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
     }
   }, [todo]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked);
-  };
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (showModal) {
+        if (event.key === 'Escape') {
+          setShowModal(false);
+        }
+      }
+    };
+    document.addEventListener('keydown', handleKeyPress);
+    return () => removeEventListener('keydown', handleKeyPress);
+  }, [showModal]);
+
+  useEffect(() => {
+    (async () => {
+      const abortController = new AbortController();
+      const signal = abortController.signal;
+      const allTodosFromApi = await getAllTodosApi(signal);
+      setTodo(allTodosFromApi);
+    })();
+  }, []);
 
   const handleEdit = () => {
     console.log('edit clicked!');
@@ -52,7 +71,7 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
         clearTimeout(updateTodosTimerId);
       }
 
-      updateTodosTimerId = setTimeout(() => setTodo(todo.filter(el => el.id !== id)), 600);
+      updateTodosTimerId = setTimeout(() => setTodo(todo.filter(el => el.id !== id)), 500);
     } catch (error: any) {
       console.error('Error deleting todo:', error.message);
       throw error;
@@ -64,6 +83,24 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
       return;
     }
     setNotificationDelete(false);
+  };
+
+  const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      const newChecked = event.target.checked;
+      setChecked(newChecked);
+      const updatedTodo = await updateCheckedTodoApi(task.id, { completed: newChecked, title: task.title });
+      setTodo(prev =>
+        prev.map(todoItem => {
+          if (todoItem.id === updatedTodo.id) {
+            return updatedTodo;
+          }
+          return todoItem;
+        }),
+      );
+    } catch (error: any) {
+      console.error('Error updating check status todo:', error.message);
+    }
   };
 
   return (
@@ -80,7 +117,7 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
             </Typography>
 
             <Tooltip title="Done" placement="top">
-              <Checkbox checked={task?.completed} onChange={handleChange} style={{ marginRight: '24px' }} />
+              <Checkbox checked={checked} onChange={handleChange} style={{ marginRight: '24px' }} />
             </Tooltip>
 
             <Tooltip title="Edit" placement="top">
@@ -95,7 +132,7 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
 
         <Snackbar
           open={notificationDelete}
-          autoHideDuration={600}
+          autoHideDuration={500}
           onClose={handleClose}
           anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
           style={{ marginTop: '390px' }}

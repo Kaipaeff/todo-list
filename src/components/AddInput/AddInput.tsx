@@ -39,12 +39,13 @@ function AddInput({ setTodo }: ITodoListProps) {
   }, [value]);
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (value && event.key === 'Enter') {
-      handleAdd();
-      event.preventDefault();
-    }
-    if (event.key === 'Escape') {
-      setValue('');
+    if (value) {
+      if (event.key === 'Enter') {
+        handleAdd();
+        event.preventDefault();
+      } else if (event.key === 'Escape') {
+        setValue('');
+      }
     }
   };
 
