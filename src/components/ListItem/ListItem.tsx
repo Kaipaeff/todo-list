@@ -89,13 +89,10 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
     try {
       const newChecked = event.target.checked;
       setChecked(newChecked);
-      const updatedTodo = await updateCheckedTodoApi(task.id, { completed: newChecked, title: task.title });
+      const updatedTodo = await updateCheckedTodoApi(task.id, { completed: newChecked });
       setTodo(prev =>
         prev.map(todoItem => {
-          if (todoItem.id === updatedTodo.id) {
-            return updatedTodo;
-          }
-          return todoItem;
+          return todoItem.id === updatedTodo.id ? updatedTodo : todoItem;
         }),
       );
     } catch (error: any) {
