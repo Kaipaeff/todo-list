@@ -21,6 +21,6 @@ export const ModalContentStyles = styled.div`
   justify-content: space-between;
   width: 500px;
   background-color: ${white};
-  padding: 30px 20px;
+  padding: 30px;
   border-radius: 12px;
 `;

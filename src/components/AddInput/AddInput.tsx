@@ -66,7 +66,7 @@ function AddInput({ setTodo }: ITodoListProps) {
           setValue(event.target.value);
         }}
         onKeyDown={handleKeyPress}
-        maxLength={35}
+        maxLength={50}
         ref={addInputRef}
       />
 
