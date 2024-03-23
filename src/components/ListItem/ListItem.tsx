@@ -5,9 +5,17 @@ import Modal from '../Modal/Modal';
 import { deleteTodoApi } from '../../services/api/rest/deleteTodoApi';
 import { updateCheckedTodoApi } from '../../services/api/rest/updateCheckedTodoApi';
 import { getAllTodosApi } from '../../services/api/rest/getAllTodosApi';
+import { updateTaskApi } from '../../services/api/rest/updateTaskApi';
 
 import { IListItemProps } from '../../types/Interfaces';
-import { ListItemStyles, DeleteOutlinedIconStyles, EditOutlinedIconStyles } from './ListItem.styles';
+import {
+  ListItemStyles,
+  DeleteOutlinedIconStyles,
+  EditOutlinedIconStyles,
+  SaveOutlineIconStyles,
+  CancelOutlineIconStyles,
+  InputStyles,
+} from './ListItem.styles';
 import { blue, deleteItemColor, textColor, white } from '../../styles/Colors';
 
 function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
@@ -15,6 +23,8 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [notificationDelete, setNotificationDelete] = useState<boolean>(false);
   const [scrollToBottomOnUpdate, setScrollToBottomOnUpdate] = useState<boolean>(true);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [editedTask, setEditedTask] = useState<string>(task.title);
 
   const listItemRef = useRef<HTMLDivElement>(null);
   let abortController: AbortController;
@@ -46,10 +56,6 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
       setTodo(allTodosFromApi);
     })();
   }, []);
-
-  const handleEdit = () => {
-    console.log('edit clicked!');
-  };
 
   const handleDelete = () => {
     setShowModal(true);
@@ -101,6 +107,26 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
     }
   };
 
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
+  const handleSave = async () => {
+    const updatedTodo = [...todo];
+    const taskIndex = updatedTodo.findIndex(todoItem => todoItem.id === task.id);
+    if (taskIndex !== -1) {
+      updatedTodo[taskIndex] = { ...updatedTodo[taskIndex], title: editedTask };
+      await updateTaskApi(task.id, { title: editedTask });
+    }
+    setTodo(updatedTodo);
+    setIsEditing(false);
+  };
+
+  const handleCancel = () => {
+    setIsEditing(false);
+    // setEditedTask(task.title);
+  };
+
   return (
     <>
       <ListItemStyles ref={listItemRef}>
@@ -116,30 +142,40 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
               {`${index + 1}.`}
             </Typography>
 
-            <Typography
-              variant="body1"
-              sx={{
-                textDecoration: checked ? 'line-through' : 'none',
-                fontWeight: checked ? 500 : 400,
-                color: checked ? blue : textColor,
-                fontSize: '18px',
-                marginRight: 'auto',
-              }}
-            >
-              {task?.title}
-            </Typography>
+            {!isEditing ? (
+              <>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    textDecoration: checked ? 'line-through' : 'none',
+                    fontWeight: checked ? 500 : 400,
+                    color: checked ? blue : textColor,
+                    fontSize: '18px',
+                    marginRight: 'auto',
+                  }}
+                >
+                  {task.title}
+                </Typography>
 
-            <Tooltip title="Done" placement="top">
-              <Checkbox checked={checked} onChange={handleChange} style={{ marginRight: '32px' }} />
-            </Tooltip>
+                <Tooltip title="Готово" placement="top">
+                  <Checkbox checked={checked} onChange={handleChange} style={{ marginRight: '32px' }} />
+                </Tooltip>
 
-            <Tooltip title="Edit" placement="top">
-              <EditOutlinedIconStyles onClick={handleEdit} style={{ marginRight: '40px' }} />
-            </Tooltip>
+                <Tooltip title="Изменить" placement="top">
+                  <EditOutlinedIconStyles onClick={handleEdit} style={{ marginRight: '40px' }} />
+                </Tooltip>
 
-            <Tooltip title="Delete" placement="top">
-              <DeleteOutlinedIconStyles onClick={() => handleDelete()} />
-            </Tooltip>
+                <Tooltip title="Удалить" placement="top">
+                  <DeleteOutlinedIconStyles onClick={() => handleDelete()} />
+                </Tooltip>
+              </>
+            ) : (
+              <>
+                <InputStyles value={editedTask} onChange={e => setEditedTask(e.target.value)} />
+                <SaveOutlineIconStyles onClick={handleSave} />
+                <CancelOutlineIconStyles onClick={handleCancel} />
+              </>
+            )}
           </CardContent>
         </Card>
 

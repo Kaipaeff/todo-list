@@ -14,7 +14,6 @@ export const updateCheckedTodoApi = async (id: number, data: { completed: boolea
     if (!response.ok) {
       throw new Error(`Failed to update checked status todo. Status: ${response.status}`);
     }
-
     return await response.json();
   } catch (error: any) {
     throw new Error(`Failed to update checked status todo: ${error.message}`);
