@@ -122,7 +122,7 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
       : setIsEditing(true);
   }, [checked]);
 
-  const handleSave = useCallback(async () => {
+  const handleSave = async () => {
     try {
       let updatedTodo = [...todo];
       const taskIndex = updatedTodo.findIndex(todoItem => todoItem.id === task.id);
@@ -142,7 +142,7 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
     } catch (error: any) {
       console.error('Error saving todo:', error.message);
     }
-  }, [editedTask, task.id, todo]);
+  };
 
   const handleCancel = useCallback(() => {
     setIsEditing(false);
