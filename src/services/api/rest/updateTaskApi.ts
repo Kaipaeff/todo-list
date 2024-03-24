@@ -1,14 +1,13 @@
-import { ITodoItems } from '../../../types/Interfaces';
-
 const url = 'https://cb17b4fb6a0456c5.mokky.dev/todos';
 // const url = 'http://localhost:3000/todos'; //reserve locale JSON-Server
 
-export const updateTaskApi = async (taskId: number, data: { title: string }) => {
+export const updateTaskApi = async (taskId: number, data: { title: string }, signal: AbortSignal) => {
   try {
     const response = await fetch(`${url}/${taskId}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
+      signal,
     });
 
     if (!response.ok) {

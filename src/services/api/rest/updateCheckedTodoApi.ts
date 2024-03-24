@@ -1,7 +1,7 @@
 const url = 'https://cb17b4fb6a0456c5.mokky.dev/todos';
 // const url = 'http://localhost:3000/todos'; //reserve locale JSON-Server
 
-export const updateCheckedTodoApi = async (id: number, data: { completed: boolean }) => {
+export const updateCheckedTodoApi = async (id: number, data: { completed: boolean }, signal: AbortSignal) => {
   try {
     const response = await fetch(`${url}/${id}`, {
       method: 'PATCH',
@@ -9,6 +9,7 @@ export const updateCheckedTodoApi = async (id: number, data: { completed: boolea
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
+      signal,
     });
 
     if (!response.ok) {

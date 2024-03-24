@@ -35,3 +35,9 @@ export interface ILinearProgressBarProps extends Pick<IHeaderProps, 'todo'> {
   progress?: number;
   setProgress?: React.Dispatch<React.SetStateAction<number>>;
 }
+
+export interface INotificationProps {
+  open: boolean;
+  type: string;
+  message: string;
+}
