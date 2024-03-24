@@ -69,7 +69,7 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
     setShowModal(true);
   }, []);
 
-  const handleConfirmDelete = useCallback(async (id: number) => {
+  const handleConfirmDelete = async (id: number) => {
     try {
       let updateTodosTimerId;
       setShowModal(false);
@@ -87,7 +87,7 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
       console.error('Error deleting todo:', error.message);
       throw error;
     }
-  }, []);
+  };
 
   const handleCloseNotification = useCallback((_event: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
