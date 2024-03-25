@@ -1,6 +1,5 @@
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Button, Snackbar, Alert } from '@mui/material';
-import ClearIcon from '@mui/icons-material/Clear';
 
 import { addTodoApi } from '../../services/api/rest/addTodoApi';
 import { getAllTodosApi } from '../../services/api/rest/getAllTodosApi';
