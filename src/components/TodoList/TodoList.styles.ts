@@ -10,6 +10,10 @@ export const TodoListStyles = styled.div`
   border: 1px solid ${borderColor};
   border-radius: 12px;
   overflow: auto;
+
+  @media (max-width: 640px) {
+    padding: 12px 6px 100px;
+  }
 `;
 
 export const TodoListItemsStyles = styled.div`

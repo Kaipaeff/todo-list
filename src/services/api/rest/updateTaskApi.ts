@@ -1,7 +1,8 @@
-const url = 'https://cb17b4fb6a0456c5.mokky.dev/todos';
-// const url = 'http://localhost:3000/todos'; //reserve locale JSON-Server
+import { apiUrlToggle } from '../../../utilities/apiUrlToggle';
 
 export const updateTaskApi = async (taskId: number, data: { title: string }, signal: AbortSignal) => {
+  const url = apiUrlToggle();
+
   try {
     const response = await fetch(`${url}/${taskId}`, {
       method: 'PATCH',

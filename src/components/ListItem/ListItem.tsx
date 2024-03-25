@@ -160,9 +160,23 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
+              '@media (max-width: 640px)': {
+                padding: '12px',
+              },
             }}
           >
-            <Typography variant="body1" color="text.secondary" mr={'6px'} fontSize={'18px'} fontWeight={'700'}>
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{
+                marginRight: '6px',
+                fontSize: '18px',
+                fontWeight: '700',
+                '@media (max-width: 640px)': {
+                  fontSize: '16px',
+                },
+              }}
+            >
               {`${index + 1}.`}
             </Typography>
 
@@ -176,17 +190,39 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
                     color: checked ? blue : textColor,
                     fontSize: '18px',
                     marginRight: 'auto',
+                    '@media (max-width: 640px)': {
+                      fontSize: '12px',
+                    },
                   }}
                 >
                   {task.title}
                 </Typography>
 
                 <Tooltip title="Готово" placement="top">
-                  <Checkbox checked={checked} onChange={handleChange} style={{ marginRight: '32px' }} />
+                  <Checkbox
+                    checked={checked}
+                    onChange={handleChange}
+                    sx={{
+                      marginRight: '32px',
+                      '@media (max-width: 640px)': {
+                        marginRight: '8px',
+                        '& .MuiSvgIcon-root': { fontSize: 20 },
+                      },
+                    }}
+                  />
                 </Tooltip>
 
                 <Tooltip title="Изменить" placement="top">
-                  <EditOutlinedIconStyles onClick={handleEdit} style={{ marginRight: '40px' }} />
+                  <EditOutlinedIconStyles
+                    onClick={handleEdit}
+                    sx={{
+                      marginRight: '40px',
+                      '@media (max-width: 640px)': {
+                        marginRight: '12px',
+                        fontSize: 'large',
+                      },
+                    }}
+                  />
                 </Tooltip>
 
                 <Tooltip title="Удалить" placement="top">
@@ -210,7 +246,16 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
           anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
           style={{ marginTop: '390px' }}
         >
-          <Alert severity={notification.type as AlertColor} variant="standard" sx={{ width: '100%' }}>
+          <Alert
+            severity={notification.type as AlertColor}
+            variant="standard"
+            sx={{
+              width: '100%',
+              '@media (max-width: 640px)': {
+                width: '70%',
+              },
+            }}
+          >
             {notification.message}
           </Alert>
         </Snackbar>

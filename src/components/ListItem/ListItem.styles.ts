@@ -5,12 +5,15 @@ import { blue, borderColor, deepGrey, lightBlue, textColor } from '../../styles/
 
 export const ListItemStyles = styled.div`
   margin-bottom: 24px;
+
+  @media (max-width: 640px) {
+    margin-bottom: 12px;
+  }
 `;
 
 export const EditOutlinedIconStyles = styled(EditOutlined)`
   color: ${textColor};
   cursor: pointer;
-  margin-right: 24px;
   transition: color 0.3s;
 
   &:hover {
@@ -27,6 +30,11 @@ export const DeleteOutlinedIconStyles = styled(DeleteOutlined)`
   &:hover {
     color: ${blue};
   }
+
+  @media (max-width: 640px) {
+    margin-right: 0;
+    scale: 0.8;
+  }
 `;
 
 export const SaveOutlineIconStyles = styled(CheckCircleOutline)`
@@ -38,6 +46,11 @@ export const SaveOutlineIconStyles = styled(CheckCircleOutline)`
   &:hover {
     color: ${blue};
   }
+
+  @media (max-width: 640px) {
+    margin-right: 12px;
+    margin-left: 12px;
+  }
 `;
 
 export const CancelOutlineIconStyles = styled(CancelOutlined)`
@@ -48,6 +61,10 @@ export const CancelOutlineIconStyles = styled(CancelOutlined)`
 
   &:hover {
     color: ${blue};
+  }
+
+  @media (max-width: 640px) {
+    margin-right: 0;
   }
 `;
 
@@ -63,5 +80,10 @@ export const InputStyles = styled.input`
   &:focus {
     border-color: ${lightBlue};
     color: ${deepGrey};
+  }
+
+  @media (max-width: 640px) {
+    height: 32px;
+    font-size: 12px;
   }
 `;

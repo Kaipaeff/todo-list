@@ -14,8 +14,26 @@ function Header({ todo = [] }: IHeaderProps) {
         <LogoImage src={logo} alt="Логотип" />
         <ControlPanelStyles>
           <LinearProgressBar todo={todo} />
-          <CalendarMonthOutlined fontSize="large" color="primary" sx={{ cursor: 'pointer' }} />
-          <AccountCircleOutlined fontSize="large" color="primary" sx={{ cursor: 'pointer' }} />
+          <CalendarMonthOutlined
+            fontSize="large"
+            color="primary"
+            sx={{
+              cursor: 'pointer',
+              '@media (max-width: 640px)': {
+                fontSize: '28px',
+              },
+            }}
+          />
+          <AccountCircleOutlined
+            fontSize="large"
+            color="primary"
+            sx={{
+              cursor: 'pointer',
+              '@media (max-width: 640px)': {
+                fontSize: '28px',
+              },
+            }}
+          />
         </ControlPanelStyles>
       </HeaderContainerStyles>
     </HeaderStyles>

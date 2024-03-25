@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import ClearIcon from '@mui/icons-material/Clear';
 import { borderColor, textColor, deepGrey, lightBlue } from '../../styles/Colors';
 
 export const AddInputStyles = styled.div`
@@ -6,6 +7,11 @@ export const AddInputStyles = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 24px;
+
+  @media (max-width: 640px) {
+    width: 93vw;
+    margin-bottom: 8px;
+  }
 `;
 
 export const InputStyles = styled.input`
@@ -20,5 +26,20 @@ export const InputStyles = styled.input`
   &:focus {
     border-color: ${lightBlue};
     color: ${deepGrey};
+  }
+
+  @media (max-width: 640px) {
+    font-size: 16px;
+    height: 32px;
+  }
+`;
+
+export const ClearIconStyled = styled(ClearIcon)`
+  position: absolute;
+  cursor: pointer;
+  right: 150px;
+
+  @media (max-width: 640px) {
+    visibility: hidden;
   }
 `;

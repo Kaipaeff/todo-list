@@ -23,4 +23,9 @@ export const ModalContentStyles = styled.div`
   background-color: ${white};
   padding: 30px;
   border-radius: 12px;
+
+  @media (max-width: 640px) {
+    width: 320px;
+    padding: 24px;
+  }
 `;

@@ -28,10 +28,26 @@ function LinearProgressBar({ todo = [] }: ILinearProgressBarProps) {
 
     return (
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Box sx={{ mr: 1 }}>
+        <Box
+          sx={{
+            mr: 1,
+            '@media (max-width: 640px)': {
+              display: 'none',
+            },
+          }}
+        >
           <Typography variant="subtitle1" color="text.secondary">{`Выполнено:`}</Typography>
         </Box>
-        <Box sx={{ width: '100%', mr: 2 }}>
+        <Box
+          sx={{
+            width: '100%',
+            mr: 2,
+            '@media (max-width: 640px)': {
+              width: '90px',
+              marginRight: '8px',
+            },
+          }}
+        >
           <LinearProgress
             variant="determinate"
             {...props}
@@ -49,7 +65,16 @@ function LinearProgressBar({ todo = [] }: ILinearProgressBarProps) {
   }
 
   return (
-    <Box sx={{ width: '300px', alignSelf: 'center', pt: '3px' }}>
+    <Box
+      sx={{
+        width: '300px',
+        alignSelf: 'center',
+        pt: '3px',
+        '@media (max-width: 640px)': {
+          width: '100%',
+        },
+      }}
+    >
       {<LinearProgressWithLabel value={progress} color="primary" />}
     </Box>
   );
