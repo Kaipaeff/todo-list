@@ -10,17 +10,27 @@ function TotalItemsCount({ todo = [] }: ITotalItemsCountProps) {
   const inProgressCount = totalCount - completedCount;
 
   return (
-    <>
+    <TotalItemsCountStyles>
       <Badge badgeContent={totalCount} color="primary" sx={{ mr: '32px', pr: '12px' }}>
-        <TotalItemsCountStyles>Всего</TotalItemsCountStyles>
+        Всего
       </Badge>
       <Badge badgeContent={inProgressCount} color="warning" sx={{ mr: '32px', pr: '12px' }}>
-        <TotalItemsCountStyles>В процессе</TotalItemsCountStyles>
+        В процессе
       </Badge>
-      <Badge badgeContent={completedCount} color="success" sx={{ mr: '32px', pr: '12px' }}>
-        <TotalItemsCountStyles>Выполнено</TotalItemsCountStyles>
+      <Badge
+        badgeContent={completedCount}
+        color="success"
+        sx={{
+          mr: '32px',
+          pr: '12px',
+          '@media (max-width: 640px)': {
+            marginRight: '0',
+          },
+        }}
+      >
+        Выполнено
       </Badge>
-    </>
+    </TotalItemsCountStyles>
   );
 }
 

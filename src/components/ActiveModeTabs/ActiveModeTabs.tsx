@@ -1,6 +1,7 @@
 import { memo, useState } from 'react';
-import { Box, Tabs, Tab } from '@mui/material';
+import { Tabs, Tab } from '@mui/material';
 import { IActiveModeTabsProps } from '../../types/Interfaces';
+import { ActiveModeTabsStyles } from './ActiveModeTabs.styles';
 
 function ActiveModeTabs({ setActiveTab }: IActiveModeTabsProps) {
   const [value, setValue] = useState(0);
@@ -13,13 +14,13 @@ function ActiveModeTabs({ setActiveTab }: IActiveModeTabsProps) {
   };
 
   return (
-    <Box sx={{ width: '350px', ml: 'auto' }}>
+    <ActiveModeTabsStyles>
       <Tabs value={value} onChange={handleChange} centered textColor="primary">
         <Tab label="Все" />
         <Tab label="Активные" />
         <Tab label="Завершенные" />
       </Tabs>
-    </Box>
+    </ActiveModeTabsStyles>
   );
 }
 
