@@ -97,6 +97,7 @@ function AddInput({ setTodo }: ITodoListProps) {
         onClose={handleClose}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         sx={{
+          marginTop: '390px',
           '@media (max-width: 640px)': {
             width: '70%',
             margin: '390px auto 0',
