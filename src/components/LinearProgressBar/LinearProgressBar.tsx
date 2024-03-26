@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useEffect, useLayoutEffect, useState } from 'react';
 import { LinearProgress, LinearProgressProps, Box, Typography } from '@mui/material';
 
 import { getCompletedTaskValue } from '../../utilities/getCompletedTaskValue';
@@ -7,7 +7,7 @@ import { ILinearProgressBarProps } from '../../types/Interfaces';
 function LinearProgressBar({ todo = [] }: ILinearProgressBarProps) {
   const [progress, setProgress] = useState<number>(0);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const cachedProgress = localStorage.getItem('progress');
     if (cachedProgress !== null) {
       setProgress(parseFloat(cachedProgress));
