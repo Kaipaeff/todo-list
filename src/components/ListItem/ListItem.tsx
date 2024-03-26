@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, memo, useCallback } from 'react';
+import { useEffect, useState, useRef, memo, useCallback, useLayoutEffect } from 'react';
 import {
   Card,
   CardContent,
@@ -39,12 +39,12 @@ function ListItem({ index = 0, task, todo = [], setTodo }: IListItemProps) {
 
   const listItemRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (scrollToBottomOnUpdate && listItemRef.current) {
-      listItemRef.current.lastElementChild?.scrollIntoView({ behavior: 'smooth' });
+      listItemRef.current.lastElementChild?.scrollIntoView({ behavior: 'instant' });
       setScrollToBottomOnUpdate(false);
     }
-  }, [todo]);
+  }, []);
 
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
